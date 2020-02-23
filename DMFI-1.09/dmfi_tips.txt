@@ -1,0 +1,279 @@
+*********************************
+Hints and Tricks On this Update:
+Version 1.05 tips and tricks
+*********************************
+
+This document assumes you have used the wands.  It covers the voice and .commands in a bit more detail so hopefully you feel comfortable using them.
+
+The big new features other than simply adding HotU and SoU content are the custom encounters on the Encounter wand to allow you to lay down and customize in game a group of monsters to spawn.  The Affliction wand is overhauled and now gives more feedback and can report immunities.
+
+Good news is that I have now added this whole readme into two in game books for you and for your players.  So if you need a listing of emotes or want to use the .commands, there is a reference in game.
+
+
+
+SKILL CHECK ROLLS:
+------------------
+
+Animations can be turned off for DM driven skill checks.  Use the settings via the DM Dicebag conversion or use the following new .commands.
+
+.aniy = for animation yes
+.anin = for animation no
+
+
+
+CUSTOM ENCOUNTERS:
+------------------
+
+There are directions in game on the custom object named "Custom Encounter".  The Encounter wand has an option for Custom Encounters.  For these to work, you need to do a bit of work in the toolset.
+
+I recommend creating a separate area (like the treasure system) for these encounters.  Place up to nine "Custom Encounter" objects - CHANGE THE TAG to be DMFI_E* where * is a number from one to nine.  Change the name to something that means something like "Goblins - 1st cave".  That is all you need to do in the toolset.
+
+In game, jump to that region and use the creator to place monsters "into" the ring.  Use the encounter wand and you will see under the custom encounters the "names" of the custom objects - as a quick reminder.  You can adjust the monsters at any time.  If the circle is empty then nothing will be created.  There is NO "scaling" of the encounter.  What you place is exactly what you will get, but this is a pretty quick / easy way to have 9 adjustable encounters that you can lay down quickly.
+
+The ditto wand works for these just like the regular encounters.
+
+
+VOICE FEATURES:
+---------------
+
+The voice and command features are powerful.  I personally shyed away for some time but these can really be huge time savers.  As long as there is an NPC, summon, or familiar around, no voice needed.
+
+The one thing that everyone needs to remember is redundant text is ignored.  Therefore if you type *strength* and it doesn't work, then typing it again will certainly not work.  You need to type something to clear the "cache".  The reason for this is simple.  If 8 npcs hear something, you don't want the code to fire 8 times.
+
+In a conversation, if you see "voice driven" that means that a setting creature will appear and you must be visible and speak in float format (ie 4.0).  If successful, you see the setting in a floating text message.  If not, then it wasn't captured for some reason.
+
+
+Tell your players to use *action* emotes.
+
+Things like *prays at the alter* *drinks the ale*
+Here is a list from the Voice readme.
+
+ALL MUST BE LOWER CASE!!!!  WON'T WORK OTHERWISE
+
+*emote* keywords
+----------------
+agree     Plays the Listen animation briefly(example: *agrees*)
+begs      Plays the Talk Pleading animation until cancelled (example: *begs for food*)
+bends     Plays the Get Low animation until cancelled (example: *bends over to pick up an object*)
+bored     Plays the Bored animation briefly (example: *looks bored*)
+bow       Plays the bow animation (example: *bows stiffly*)
+celebrate Plays a Cheer voicechat and animation (example: *celebrates*)
+chats     Plays the Normal Chat animation until cancelled (example: *chats with the group*)
+cheer     Plays a Cheer voicechat and animation (example: *cheers for victory*)
+chuckle   Plays the Laugh voicechat and emote (example: *chuckles*)
+curtsey   Plays the bow animation (example: *curtsey*)
+demand    Plays the Forceful Chat animation (example: *demands your attention*)
+dice      Plays the Get Mid animation (example: *rolls some dice*)
+drink     Plays the Drink animation (example: *drinks a swig of ale*)
+drunk     Plays the Drunk animation until cancelled (example: *staggers drunkenly*)
+exhausted Plays the Tired animation(example: *looks exhausted*)
+fatigue   Plays the Tired animation(example: *looks fatigued*)
+fiddle    Plays the Get Mid animation until cancelled (example: *fiddles with the lock*)
+fidget    Plays the Pause animation until cancelled (example: *fidgets nervously*)
+flop      Plays the Dead Front animation until cancelled (example: *flops on the ground*)
+giggle    Plays a giggle, if female (example: *giggles*)
+greet     Plays the greeting voicechat (example: *greets NPC*)
+hooray    Plays a Cheer voicechat and animation (example: *hooray*)
+hums      Applies a Bard Song effect for 6 seconds (example: *hums a tune*)
+laugh     Plays the Laugh voicechat and emote (example: *laughs out loud*)
+meditate  Plays the Meditate animation until cancelled (example: *meditates on the word Om*)
+mock      Plays the Taunt voicechat and animation (example: *mocks*)
+nap       Applies a Snoring Sleep effect to the caller (example: *takes a short nap*)
+nod       Plays the Listen animation briefly(example: *nods*)
+peers     Plays the Look Far animation until cancelled (example: *peers in the distance*)
+plead     Plays the Talk Pleading animation until cancelled (example: *pleads with the jury*)
+pray      Plays the Meditate animation until cancelled (example: *prays to Pelor*)
+prone     Plays the Dead Front animation until cancelled (example: *falls prone*)
+reads     Plays the Read animation once (example: *reads the old book*)
+scratch   Plays the Scratch Head animation once (example: *scratches head*)
+salute    Plays the Salute animation once (example: *salutes stiffly*)
+scans     Plays the Look Far animation until cancelled (example: *scans the room*)
+search    Plays the Look Far animation until cancelled (example: *searches the area*)
+shifts    Plays the Pause animation until cancelled (example: *shifts position*)
+sings     Applies a Bard Song effect for 6 seconds (example: *sings a ditty*)
+sips      Plays the Drink animation (example: *sips some coffee*)
+sleep     Applies a Sleep effect to the caller (example: *sleeps briefly*)
+smokes    Creates a smoke puff at head level (example: *smokes*) //This function courtesy of Jason Robinson (Vendolin)
+snore     Applies a Snoring Sleep effect to the caller (example: *snores loudly*)
+steal     Plays the Steal animation once (example: *deftly steals*)
+stoops    Plays the Get Low animation until cancelled (example: *stoops low*)
+stretch   Plays the Bored animation briefly (example: *stretches*)
+swipe     Plays the Steal animation once (example: *swipes some quarters*)
+talks     Plays the Normal Chat animation until cancelled (example: *talks to the bartender*)
+taunt     Plays the Taunt voicechat and animation (example: *taunts*)
+threaten  Plays the Forceful Chat animation (example: *threatens the bartender*)
+tired     Plays the Tired animation(example: *looks tired*)
+wave      Plays the greeting animation (example: *waves*)
+whistles  Applies a Bard Song effect for 6 seconds (example: *whistles a tune*)
+woozy     Plays the Drunk animation until cancelled (example: *looks woozy*)
+worship   Plays the Worship animation until cancelled (example: *worship the shrine*)
+yawn      Plays the Bored animation briefly (example: *yawns loudly*)
+
+Special Emotes
+--------------
+"sits" and "drink" together in the same emote - Sits on the floor, then plays drinking animation. If you are already sitting, then you continue to sit (example: *drinks and continues to sit*)
+"sits" and "reads" together in the same emote - Sits on the floor, then plays reading animation. If you are already sitting, then you continue to sit (example: *sits and read*)
+"sits" and "floor" together in the same emote - Plays the Sit Down on Floor animation until cancelled (example: *sits on the floor*)
+"shakes head" - A "head shake" animation (example: *shakes head*)
+
+
+In addition players can quickly roll skill checks by using this feature.  Just type something like *uses strength to move the big rock* will not only add a bit of flare to the game but rolls the skill check.  Two purposes and faster than using the dicebag.
+
+All the skills are implemented (the list below is old) and now there is NO need to capitalize the first letter.  It is case insensitive on the first letter so you could type *Craft Armor* *Craft armor* or *craft armor* and it can be mixed with other text as shown above.
+
+
+
+*emote* diceroll keywords
+-------------------------
+Strength         Rolls a Strength check
+Dexterity        Rolls a Dexterity check and plays the Steal animation
+Constitution     Rolls a Constitution check
+Intelligence     Rolls an Intelligence check and plays the Scratch Head animation
+Wisdom           Rolls an Wisdom check and plays the Scratch Head animation
+Charisma         Rolls a Charisma check and plays the Talk Normal animation for 5 seconds
+Fortitude        Rolls a Fortitude Save
+Reflex           Rolls a Reflex Save and plays the Steal animation
+Will             Rolls a Will Save and plays the Drunk animation for 5 seconds
+Animal Empathy   Rolls an Animal Empathy check and plays the Talk Pleading animation for 5 seconds
+Concentration    Rolls a Concentration check
+Disable Trap     Rolls a Disable Trap check and plays the Get Low animation for 3 seconds
+Discipline       Rolls a Discipline check
+Heal             Rolls a Heal check
+Hide             Rolls a Hide check and plays the Dead Front animation until cancelled
+Listen           Rolls a Listen check and plays the Turn Head Left animation
+Lore             Rolls a Lore check and plays the Read animation
+Move Silently    Rolls a Move Silently check and plays the Steal animation
+Open Lock        Rolls an Open Lock check
+Parry            Rolls a Parry check
+Perform          Rolls a Perform check and applies the Bard Song effect for 6 seconds.
+Persuade         Rolls a Persuade check and plays the Talk Pleading animation for 5 seconds
+Pickpocket       Rolls a Pickpocket check and plays the Steal animation
+Search           Rolls a Search check and Plays the Look Far animation for 3 seconds
+Set Trap         Rolls a Set Trap check and Plays the Get Low animation for 3 seconds
+Spellcraft       Rolls a Spellcraft check and Casts a fake Fox's Cunning spell
+Spot             Rolls a Spot check and Plays the Look Far animation for 3 seconds
+Taunt            Rolls a Taunt check and Plays the Taunt animation
+Use Magic Device Rolls a Use Magic Device check and Plays the Scratch Head animation
+
+
+
+
+.commands - The next real category of things the voice can do.
+--------------------------------------------------------------
+
+First the new features to let the DMs have the power of the *skill rolls* that the players have.  All of these commands DO NOT require the use of the dm channel.  Just type in talk while you are "disappeared" and the code is run.
+
+Skill checks:  Ability, Saves and Skill checks can now be rolled by typing ".strength" or ".strength all".  The target for the skill check will be the last player or object targetted with ANY DMFI widget (other than the voice wand or widget).
+
+So to be clear, you can "cache" two different types of targets with the DMFI set.  One is a default voice that is loaded to ":" on the DM channel by default (remember you can set up others like & % $ - see the .set command below) and the last target of the other DM wands.
+
+This lets you possess a creature, throw your voice to another creature, and keep a player targetted for .skill checks.
+
+The .skills should all be lower case and if you use the word "all" at the end, then all PCs in the area will roll a skill check.  You can always target a NPC with the DMFI wands to have the .skills roll for NPCs instead.
+
+In reality this is much faster than opening up the conversation tree and finding the skill.  If you do not have a valid DMFI target, the default voice target is used and you will get a server message telling you of this invalid target and transfer.
+
+Broadcast messaging can be changed by the following commands.  This is the same setting that DM dicebag will use, just another shortcut.
+
+.global (a shout)
+.local	(simple talk)
+.private (DM and roller)
+.dm (DM only)
+
+
+
+The other .commands
+-------------------
+
+
+After you've targeted an NPC, you can control them by using the following
+commands (on the DM channel if PCs are around, or you can use normal talk if no
+PCs are around).
+
+.appearance ***** - This command allows you change the appearance of the DMFI target.  (either the last one used by ANY DMFI Wand (except voice wand/widget) or the target set by the DMFI Target Widget).  For a full list of appearances, examine the Target / 2DA data widget.
+
+.buff x - This command "buffs" the creature for the time span of one hour realtime, where x is a string that describes the buff.
+
+These general buffs apply around 3-4 buffs that should be level appropriate
+
+***new ones***
+
+.buff low	(level 5)
+.buff mid	(level 10)
+.buff high	(level 15)
+.buff epic	(level 20)
+
+***************
+
+
+.buff barkskin - Barkskin (+3AC)
+.buff elements - Resist Elements (20 points, all elemental damage)
+.buff haste - Haste
+.buff invis - Invisibility
+.buff plot - Sets the plot flag
+.buff stoneskin - Stoneskin (+3/10 damage reduction, 100 points of soak)
+.buff truesight - True Seeing
+.buff unplot - Removes the plot flag
+
+.damage x - This command inflicts x amount of damage to the NPC, where x is any number.
+
+.dismiss - This command destroys the NPC, making the NPC disappear.
+
+
+these commands allow you to set the faction of the targeted NPC. Pretty self-explanatory.
+
+.faction hostile
+.faction defender
+.faction merchant
+.faction commoner 
+
+.fly Makes the NPC "fly away" (Destroys the NPC in the process)
+
+.freeze - This command freezes the NPC, preventing the NPC from acting. May not always work.
+
+
+.follow x - This command makes the NPC follow you for x seconds. May not always 
+    work, and it is difficult to stop the NPC from following you.
+
+.get x - Jumps NPC/PC defined by the control character x (using .set) to your location
+
+.goto x - Jumps you to the NPC/PC defined by the control character x (using .set)
+
+.heal x - This command heals the NPC for x amount
+
+.language xxxx - This command changes the language of the targeted creature to 
+whatever you type. Example - .language Abyssal
+
+.mute - This command prevents an NPC from making it's usual "click to talk"
+    conversation. It is identical to the Mute NPC toggle.
+
+.remove - This command removes all effects on the targeted creature
+
+.say xx - This command makes the NPC say the prepared phrase corresponding to
+    the number. This works well if you already know the phrase you want to say.
+
+.set X - This allows you to set the "control character" for this NPC. The
+control character is the prefix that you need to throw your voice to the NPC.
+You can set this to any non-alphanumeric character except "[" ":" and "." (all
+reserved). Note that using a control character already being used by another
+PAdmin/DM will overwrite the previous setting.
+Usage example: "/dm .set *" sets the control character of the targeted NPC to *.
+Now to throw my voice at that NPC, I type "/dm *Hey, you. Come back here!".
+
+The advantage of control characters is that you can throw your voice to the
+NPC regardless of what area you are in, as long as you are nearby any other
+NPC.
+
+You can also use .commands on pre-.set NPCs. So to damage the NPC in the previous example, you type:
+/dm *.damage 10
+
+.unfreeze - This command negates the freeze command.
+
+.unmute - This command negates .mute. It is identical to the Mute NPC toggle.
+
+All NON-SKILL RELATED .commands can be truncated to three letters (for example, you can use
+.fac defender instead of .faction defender).  Skills can't be truncated.
+
+
+
+

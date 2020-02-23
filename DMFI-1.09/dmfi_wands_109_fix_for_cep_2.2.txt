@@ -1,0 +1,20 @@
+
+***************************
+---------------------------
+DMFI Version 1.09 & CEP 2.2
+---------------------------
+***************************
+
+[February 2, 2009]
+
+CEP 2.2 includes a hak from the C.R.A.P. project called cep2_crp_s.hak. Unfortunately, this hak includes a DMFI file from an old release. This causes problems when trying to use this optional CEP hak and DMFI 1.09.
+
+SUGGESTED WORKAROUND
+--------------------
+The conflicting DMFI script is actually an include file called dmfi_dmw_inc, and it is referenced by only one script in DMFI 1.09: dmfi_execute.
+
+1. Copy the script file dmfi_dmw_inc to dmfi_dmwx_inc. (You can do this by opening the file in the script editor and choosing the Save As icon from the toolbar.)
+2. Edit the dmfi_execute script and change the #include line at the top of the file from dmfi_dmw_inc to dmfi_dmwx_inc. Save and compile.
+3. Delete the now-unused dmfi_dmw_inc from your module.
+
+This should allow you to use CEP 2.2 and DMFI 1.09 together. Contact tsunami282 via the Bioware message boards if you need help.

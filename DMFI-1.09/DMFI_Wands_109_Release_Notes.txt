@@ -1,0 +1,271 @@
+
+*********************************
+---------------------------------
+NEW STUFF FOR DMFI Version 1.09
+---------------------------------
+*********************************
+
+For 1.09, Tsunami282 has taken over as project manager and lead programmer. Many thanks to the other contributors and testers, including: Merle, Mykael22000, Morderon, Prince Demitri, and Night Journey.
+
+Bugfix:
+* Added fix for resting VFX when rest is cancelled.
+
+Changes:
+* Added 6-hour rest time limit option.
+* Added PDK class to constants for DM wand's player report option.
+* Added Ride check to dicebag.
+* The ".appearance" command has been enhanced. In addition to the previous options, you may now enter any value from the LABEL column of appearance.2da, or just enter the row number.
+* Added DMFI Naming Wand. Allows changing of target name or description, subject to the limitations of the SetName() and SetDescription() NWScript functions.
+* Added support for Knat's NBDE to the internal DMFI persistence routines.
+* Added 3 new languages: Sylvan, Rashemi, Mulhorandi.
+* allow certain dot commands to be used by players: .loc, .glo, .pri, .dm, .aniy, .anin, .emoy, .emon, .lan
+* allow builder to set colors for DMFI messages.
+
+-----------------------------------------------
+* Conversion of listeners to OnPlayerChat event
+-----------------------------------------------
+By far the biggest change in this release is the elimination of the old NPC listener system, and its replacement by the OnPlayerChat event. There is no longer a need for DMFI to modify the nw_c2_default4 script to hook in listener functionality. Instead, all text spoken by PC's (other than in tells) is filtered through the OnPlayerChat event (new in NWN 1.69).
+
+Some options in the Voice Wand have been reworked as part of this change.
+
+Credits: Tsunami282 - lead programmer. Merle - rest system fix and initial OnPlayerChat implementation. Mykael22000 - design assistance. Prince Demitri & Night Journey – new languages. Morderon – miscellaneous fixes.
+
+
+*******************************
+-------------------------------
+NEW STUFF FOR DMFI Version 1.08
+-------------------------------
+*******************************
+
+As of this version, hahnsoo has taken over bugfixes and project manager updates (again). Much thanks go to Demetrious for his hard work in keeping this package updated and alive.
+
+Bugfixes:
+* Fixed the Blue text for the ColorText function (reported by Sir Elric)
+* Added sphinx to appearance list(reported by fenix_nl)
+* Added a ClearAllActions command to the targets of the Buff Wand, so that the ActionCastSpellAtObject events fire off properly. (reported by Toranga)
+* Fixed a typo in the dmfi_reputation variable (reported by dguntner)
+* Recalled copies of players are now set as Raiseable, Selectable bodies. This prevents players from looting their copies, and allows for easier clean-up. (reported by Lazybones)
+
+Changes:
+* Updated the Custom Encounters to duplicate all effects on the copied creatures when activating the Encounter Wand. This allows you to create "pre-buffed" encounters and duplicate them easily.
+* Activating the Voice Widget or any of the language widgets now jumps the Voice to the activator, rather than destroying and creating a new Voice. They will still create a new Voice when necessary.
+* 1 File added: Added wrapper functions for the persistent variables. They are in a new include, dmfi_db_inc, and will allow advanced users to choose what sort of database they wish to use to store DMFI variables. The default is still the Bioware database.
+* Also in the dmfi_db_inc file, there is a constant int called LISTEN_PATTERN which will allow you to globally set the constant of the Listening pattern that the DMFI W&W uses. Setting this to 0 may help make the W&W compatible with Jasperre's AI scripts.
+* Added to DMFI NPC Control Wand: New option for Toggle Bioware Encounters in Area. This allows you to toggle the Active/Inactive state of all the Bioware encounters in a particular area.
+* Changed the DMFI DM Wand: Added new Jail function and changed the Penguin function to be a toggle.
+* Added a new widget: DMFI Destroy Object Widget. This allows you to quickly destroy small groups of objects, a single object, or a placeable near your avatar.
+* Added a new widget: DMFI Jail Widget. This dumps a targeted offender into a "Jail" area. A default one is provided, but you can set up any jail area that you'd like by placing a waypoint with the tag "dmfi_jail" in your module.
+* Added 9 Custom Languages, plus the ability to easily add hundreds of unique languages. To customize the name of a language, simply change the name of a Custom Language widget. The naming convention for tags of custom languages is hlslang_x, where x is any number above 100.
+* Replaced Report XP/Gold with Full Player Report, which gives the old DM wand listing of inventory and stats.
+* Added a DMFI Resting System Alpha. Please take time to test this. Instructions and features are listed in dmfi_rest_alpha.txt and in the dmfi_onrest script comments.
+
+
+
+*******************************
+-------------------------------
+NEW STUFF FOR DMFI Version 1.07
+-------------------------------
+*******************************
+
+The primary reason for the update was to address an issue with SILENT SHOUTS causing the voice.exe file to run frequently.  It ended up addressing several pretty big issues and added a two new features plus a release of a new Player Guide to the DMFI.  In fact, it was big enough that I dropped the update erf for fear I would leave a small piece of updated code out.
+
+
+
+-----------------------
+* Player Guide Document
+-----------------------
+
+In a continuing effort to keep improving this package, this release now contains a Player Guide to the DMFI.  It is a beta release of the document.  Please post in the DM forum or here if you see problems or things are not clear.  It will be released as a final version in the near future as a separate item here on the vault.
+
+Don't worry DMs - Lazybones has been hard at work and our new DM complete documentation is a little over 44 pages which should finally catch documentation of this system up with the actual code.  Target date is for NWConII (mid April).
+
+
+
+--------------------------
+* Voice.exe CPU BURDEN fix
+--------------------------
+
+Credits: Arawen and Hahnsoo for work and effort in coming up with what was happening and the best approach to fix this error of design.
+
+
+Issue 1, the voice.exe call itself:
+-----------------------------------
+
+Here is a link to a thread where the issue is discussed:
+http://nwn.bioware.com/forums/viewtopic.html?topic=197145&forum=45&sp=150
+
+This issue has been the case forever.  This is not a new issue just one that we figured out was causing more CPU burden than certainly I realized.  Here is a basic summary.
+
+CPU burden from the DMFI is caused by the "listening" and "voice" features - ie the emotes, languages, .commands etc.  There are 2 things that cause the burden.  1 is the "listening" part and 2 is running the code to parse the "heard" text.
+
+From testing, it is easy (prior to this version) to have the voice.exe file run 500 times from a SHORT level 10 creature battle with around 8 total creatures.
+
+Obviously this is wasted CPU power.
+
+In this version, the code for calling the voice.exe file is cleaned.  SILENT_SHOUTS are NOT sent and will be ignored completely.  This is the new default setting and should, probably noticably, improve your in game performance.
+
+Just like always, it is plug and play.  Install directions have not changed, just the code additions to the BW default AI scripts have changed.
+
+
+Issue 2, the listening component:
+---------------------------------
+
+There still is some processor burden spent due to the actual listening but I think for most users, you will see an increase in performance and don't need to worry about this portion but I have included a toggle to turn off the default listening code.
+
+dmfi_dmw_inc now has a single constant at the top of the script:
+
+const	DMFI_LISTENING_GLOBAL = 1;
+
+To turn off listening by all the NPCs (summoned creatures, familiars, and henchmen will still listen because there are NOT enough of them to make a performance difference) - set this to 0.  If you do this, then there will be NO listening performed unless YOU set it up.  
+
+**4 ways to manually set up listening patterns**
+
+*1 - Use a "voice" creature to listen to a party.  Use the Voice wand and target a PC and then 	choose the create voice to follow and listen option (the one that has an option for targetting NPC or a Player).  It will create a voice that will follow that  PC.  If you run a single party, I would target a non-mage (because of the listening familiars) and that might cover you completely. 
+
+*2 - Familiars, summoned creatures, and henchmen will still "hear".  So simply have one around.
+
+*3 - Use the voice wand to target an NPC and then set them to LISTEN.  Same option as Listen and 	follow if you target a PC.
+
+*4 - Set a local variable on a NPC in the toolset.  Set "DMFI_LISTEN" to 1 and that creature will 	listen.  Just like the BW OnSpawn variable toggle system.
+
+
+Summary:
+
+The default install is MUCH cleaner than it has ever been regarding this issue.  I think you will see a performance difference.  We have included methods to further improve performance that some users may like to experiment with to see if it makes a further significant improvement in performance.
+
+
+Why not make it a separate erf?
+Stripping out the voice all together is the absolute fastest but you begin to loose basic features like settings and the voice wand and for me, that will lead to more confusion, and headaches than it is worth.  It would be a VERY MINIMAL change over just turning the DMFI_LISTENING to 0.
+
+
+
+-------------------------
+* "Faking" Skill Roll fix
+-------------------------
+
+A few people on PWs have been using macro'd text to simulate dice rolls.  Now all DMFI dicerolls (pc wand driven, pc emote driven, and dm driven) will show as "CYAN".  No other changes, just you will see that the color is different.  I don't think players have any way to alter the text color live so this should fix the issue.
+
+Search for "ColorText" in the dmfi_execute file to change the color.
+
+
+
+-------------------------
+* Color Text Descriptions
+-------------------------
+
+Color any text you send through scripting for more emphasis
+
+Since I was adding the code for that fix, it now just comes included in the DMFI.  There is an invisible placeable in the DMFI Encounter Region that holds high ascii characters.  The code for the color text is in "dmfi_dmw_inc".  To color text, follow this pattern.
+
+Add the include file: #include "dmfi_dmw_inc" to the top of any file (above void main())
+
+string sColoredText = ColorText(sNotColoredText, "red");
+
+Use BW functions to send out the colored text to whoever or whereever you want.
+
+Options are:
+
+yellow, magenta, cyan, red, green, blue
+
+Credits:  Richterm for basically the technique - I just packaged the idea into a separate function for ease of use.
+
+
+-------------------------
+* Trained Only Use Skills
+-------------------------
+
+Some skills require at least 1 skill point to perform a skill roll.  This was NEVER accounted for in the dicebags.  Now we do.  If you attempt to roll a skill that requires training with none, you will see red text stating that no roll was performed, skill requires training.
+
+Credit: Darkmoon for the bug notice.
+
+
+----------------------
+* DM Spy Functionality
+----------------------
+
+I think I broke this in version 1.05.  It now functions properly.  When on, all "heard" text will be sent to the SPECIFIC DM that toggled the system on.  This is improved.  The prior version was all or none for all DMs.
+
+If you turn off listening (see above), then you might not see extra text from this.  It serves to send talking from a party to a DM in a different region.  So that you can lay down monsters or "work ahead" and still "hear" the live PC conversations like you are there.
+
+It requires a "listening" object to function.
+
+New coding care of : fenix_nl - thanks for help and suggestion and especially for the cut and paste code :)
+
+
+--------------------------------------------------
+* All Player Items are Plot / Stolen / Undroppable
+--------------------------------------------------
+
+They were inconsistent before and there was an issue with HCR creating an exploit - this should fix that conflict.
+
+
+--------------------------------------
+* EFFECT DELAY Added back into the mix
+--------------------------------------
+
+I think this got removed when the original DM wand was integrated into the DMFI wands but I got a request for this to be put back in and so here it is.  Anything that is FNF will or should have a delay - if the delay is longer than 2 seconds, you will see a message stating the effect has been created.
+
+
+-----------------------
+* DMFI_REPUTATION Error
+-----------------------
+
+Two places this was listed as an int and it should have been a float consistently.
+Bug report via: dguntner
+
+
+
+
+
+
+
+
+
+
+
+
+*******************************
+-------------------------------
+NEW STUFF FOR DMFI Version 1.06
+-------------------------------
+*******************************
+
+Small update.  Basically in patch it up mode.
+
+--------------------------
+* ADDED AN UPDATE ONLY ERF
+--------------------------
+
+Now that all the "new" code is in place, the updates are more for "patching" particular issues.  To make updating more end user friendly I have added an UPDATE.erf (dmfi_05_to_06.erf) into the package.  Simply import and overwrite the affected files to update your module.  No more messing with selective overwriting or worry about your voice changing to commoner or other importing issues.  Should be much easier.  Still all packaged together because I like a single site and a single reference page - Here :)
+
+----------------------------------
+* ADDED NEW OBJECT FACING COMMANDS
+----------------------------------
+
+BW added an object facing but it was hard to line things up perfectly so new functions of set facing due North and due East have been added to the DM Wand.
+
+------------------------------------------------
+*ADDED THE IN GAME DOCUMENTATION TO THE EXPLODER
+------------------------------------------------
+
+Exploder now will give the in game documents - Don't USE on a Player - but it will equip your avatar with the items and hopefully get them a bit more exposure.
+
+--------------------------------------------------------
+* REMOVED EFFECT DELAY AND CLARIFIED THE EFFECT DURATION
+--------------------------------------------------------
+
+Basically the delay has NEVER worked so it was removed.  Now the conversation is a bit more clear on which effects are NOT affected with the duration (any with the FnF - "fire and forget" - label are NOT affected).
+
+-------------------------------------------------
+* REMOVED THE REPEATING VOICE ACTIVATION REMINDER
+-------------------------------------------------
+
+Backed down this reminder to fire just one time.  Some people don't use voice functions at all so it could be pretty annoying.  Just reminder to activate the voice commands if you expect them to work.
+
+
+
+
+
+
+
+
